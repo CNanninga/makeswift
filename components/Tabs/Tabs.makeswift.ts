@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-import { List, Shape, Slot, Style, TextInput } from '@makeswift/runtime/controls'
+import { List, Shape, Slot, Style, TextInput, Color } from '@makeswift/runtime/controls'
 
 import { runtime } from '@/lib/makeswift/runtime'
 
@@ -24,6 +24,8 @@ runtime.registerComponent(
         },
       }),
       ariaLabel: TextInput({ label: 'ARIA Label' }),
+      tabTextColor: Color({ label: 'Tab Text Color' }),
+      tabHighlightBorderColor: Color({ label: 'Tab Highlight Border Color' }),
     },
   }
 )
