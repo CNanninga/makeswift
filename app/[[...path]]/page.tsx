@@ -4,7 +4,6 @@ import { Page as MakeswiftPage } from '@makeswift/runtime/next'
 import { getSiteVersion } from '@makeswift/runtime/next/server'
 
 import { client } from '@/lib/makeswift/client'
-import '@/components/makeswift'
 
 type ParsedUrlQuery = { path?: string[] }
 
