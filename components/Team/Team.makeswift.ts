@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-import { List, Shape, TextInput, Image, Slot, Number, Style } from '@makeswift/runtime/controls'
+import { List, Shape, TextInput, Image, Slot, Number, Style, Color } from '@makeswift/runtime/controls'
 
 import { runtime } from '@/lib/makeswift/runtime'
 
@@ -28,7 +28,7 @@ runtime.registerComponent(
           },
         }),
         getItemLabel(member) {
-          return member?.name || 'Image'
+          return member?.name || 'Team Member'
         },
       }),
       itemsPerRow: Number({
@@ -43,7 +43,13 @@ runtime.registerComponent(
         min: 1,
         max: 4,
       }),
-      className: Style({ properties: Style.All })
+      highlightColor: Color({
+        label: "Highlight Color",
+      }),
+      thumbnailTextColor: Color({
+        label: "Thumbnail Text Color",
+      }),
+      className: Style({ properties: Style.All }),
     },
   }
 )
