@@ -153,7 +153,7 @@ export const Team = forwardRef((
   ]
 
   return (
-    <div className={clsx("m-8 w-full", className)} ref={ref}>
+    <div className={clsx("w-full", className)} ref={ref}>
       <div className="relative h-96">
         {members.map((member, index) => {
           if (!visibleMembers.includes(index)) return null
