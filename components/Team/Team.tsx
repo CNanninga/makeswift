@@ -39,7 +39,7 @@ export const Team = forwardRef((
 
       setTimeout(() => {
         setVisibleMembers(newVisibleMembers.filter(thisIndex => thisIndex !== prevActiveIndex))
-      }, fadeInDuration * 2)
+      }, fadeInDuration * 1.5)
     }, 10)
   }
 
