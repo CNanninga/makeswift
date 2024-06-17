@@ -13,19 +13,21 @@ type Member = {
 type Props = {
   members: Member[];
   itemsPerRow?: number;
-  mobileItemsPerRow?: number;
   highlightColor?: string;
   thumbnailTextColor?: string;
+  thumbnailOrientation?: "vertical" | "horizontal";
   className?: string;
 }
 
 export const Team = forwardRef((
-  { members, className, highlightColor, thumbnailTextColor, itemsPerRow = 3, mobileItemsPerRow = 2 }: Props, 
+  { members, className, highlightColor, thumbnailTextColor, thumbnailOrientation, itemsPerRow = 3 }: Props, 
   ref: Ref<HTMLDivElement>
 ) => {
   const fadeInDuration = 500
   const [activeMember, setActiveMember] = useState(0)
   const [visibleMembers, setVisibleMembers] = useState([0])
+
+  const vertical = (thumbnailOrientation === "vertical")
 
   const changeActiveMember = (index:number) => {
     const prevActiveIndex = activeMember
@@ -44,31 +46,23 @@ export const Team = forwardRef((
   }
 
   return (
-    <div className={clsx("w-full", className)} ref={ref}>
-      <div className="relative h-96">
-        {members.map((member, index) => {
-          if (!visibleMembers.includes(index)) return null
-
-          return (
-            <div key={index} 
-              className={`absolute ${index !== activeMember ? 'opacity-0' : 'opacity-100'}
-                transition-opacity duration-[var(--fadeDuration)] w-full`}
-                style={{
-                  "--fadeDuration": `${fadeInDuration}ms`,
-                } as CSSProperties}>
-                {member.content}
-            </div>
-          )
-        })}
-      </div>
-      <div className="p-4">
-        <ul className={`grid grid-cols-[var(--mobileItemsPerRow)] lg:grid-cols-[var(--itemsPerRow)] gap-x-4 gap-y-8 px-16 justify-items-center`}
+    <div className={clsx(
+      "w-full", 
+      className,
+      vertical && "flex gap-4"
+      )} ref={ref}>
+      <div className={clsx(
+        vertical && "flex-none",
+        vertical || "p-4"
+        )}>
+        <ul className={clsx(
+          vertical || "grid grid-cols-[var(--itemsPerRow)] gap-x-4 gap-y-8 md:px-16 justify-items-center"
+          )}
           style={{ 
             "--itemsPerRow": `repeat(${itemsPerRow}, minmax(0, 1fr))`,
-            "--mobileItemsPerRow": `repeat(${mobileItemsPerRow}, minmax(0, 1fr))`, 
           } as CSSProperties}>
           {members.map((member, index) => (
-            <li key={index} className={`max-w-48 text-center 
+            <li key={index} className={`max-w-24 sm:max-w-48 text-center 
               border ${index === activeMember ? "border-[var(--highlightColor)]" : "border-transparent"} border-2 
               p-2 rounded-md cursor-pointer transition-colors duration-300`}
               style={{ 
@@ -83,6 +77,26 @@ export const Team = forwardRef((
             </li>
           ))}
         </ul>
+      </div>
+      <div className={clsx(
+        "relative overflow-hidden",
+        vertical && "flex-auto",
+        vertical || "relative h-[560px]"
+        )}>
+        {members.map((member, index) => {
+          if (!visibleMembers.includes(index)) return null
+
+          return (
+            <div key={index} 
+              className={`absolute ${index !== activeMember ? 'opacity-0' : 'opacity-100'}
+                transition-opacity duration-[var(--fadeDuration)] w-full`}
+                style={{
+                  "--fadeDuration": `${fadeInDuration}ms`,
+                } as CSSProperties}>
+                {member.content}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-import { List, Shape, TextInput, Image, Slot, Number, Style, Color } from '@makeswift/runtime/controls'
+import { List, Shape, TextInput, Image, Slot, Number, Style, Color, Select } from '@makeswift/runtime/controls'
 
 import { runtime } from '@/lib/makeswift/runtime'
 
@@ -37,17 +37,20 @@ runtime.registerComponent(
         min: 1,
         max: 12,
       }),
-      mobileItemsPerRow: Number({
-        label: "Items Per Row at Mobile",
-        defaultValue: 2,
-        min: 1,
-        max: 4,
-      }),
       highlightColor: Color({
         label: "Highlight Color",
       }),
       thumbnailTextColor: Color({
         label: "Thumbnail Text Color",
+      }),
+      thumbnailOrientation: Select({
+        label: "Thumbnail Orientation",
+        labelOrientation: "horizontal",
+        options: [
+          { value: "vertical", label: "Vertical" },
+          { value: "horizontal", label: "Horizontal" },
+        ],
+        defaultValue: "vertical",
       }),
       className: Style({ properties: Style.All }),
     },
