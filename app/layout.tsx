@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
+import clsx from 'clsx'
 
 import { DraftModeScript } from '@makeswift/runtime/next/server'
 
@@ -9,6 +11,11 @@ import { MakeswiftProvider } from '@/lib/makeswift/provider'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const playwriteHrLijeva = localFont({ 
+  src: '../fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf',
+  variable: '--font-playwrite-hr-lijeva',
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,7 +32,7 @@ export default function RootLayout({
       <head>
         <DraftModeScript />
       </head>
-      <body className={inter.className}>
+      <body className={clsx(playwriteHrLijeva.className, inter.className)}>
         <MakeswiftProvider>{children}</MakeswiftProvider>
       </body>
     </html>

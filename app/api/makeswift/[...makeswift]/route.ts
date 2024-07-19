@@ -21,6 +21,40 @@ const handler = MakeswiftApiHandler(process.env.MAKESWIFT_SITE_API_KEY, {
           { weight: '800', style: 'normal' },
         ],
       },
+      {
+        family: 'var(--font-playwrite-hr-lijeva)',
+        label: 'Playwrite HR Lijeva',
+        variants: [
+          { 
+            weight: '300', 
+            style: 'normal',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+          { 
+            weight: '300', 
+            style: 'italic',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+          { 
+            weight: '400', 
+            style: 'normal',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+          { weight: '400', 
+            style: 'italic',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+          { 
+            weight: '700', 
+            style: 'normal',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+          { weight: '800', 
+            style: 'normal',
+            src: "/fonts/Playwrite_HR_Lijeva/PlaywriteHRLijeva-VariableFont_wght.ttf", 
+          },
+        ],
+      },
     ]
   },
 })
